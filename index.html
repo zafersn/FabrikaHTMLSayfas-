@@ -1,0 +1,64 @@
+<?php
+$hostname='localhost';
+$username='root';
+$password='';
+
+try {
+    $dbh = new PDO("mysql:host=$hostname;dbname=android_api",$username,$password);
+
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+    echo 'Connected to Database<br/>';
+
+    $sql = "SELECT * FROM fabrikadb";
+foreach ($dbh->query($sql) as $row)
+    {
+    echo $row["makina_calisma_sure"] ." - ". $row["urun_adedi"] ."<br/>";
+    }
+
+
+    $dbh = null;
+    }
+catch(PDOException $e)
+    {
+    echo $e->getMessage();
+    }
+?> 
+<html>
+     <head>
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9">
+      <title>Tablo Örnek</Title>
+     </head>  
+  <body>
+  
+      <table border="20" width="80%" cellpadding="0" cellspacing="0" bgcolor="cccc33" align="center">
+          <caption align="center"><strong>Fabrikamızın Makina İstatistikleri</strong></caption>
+          <tr  height="70px">
+              <th rowspan="1" colspan="2"  align="center">Makin Çalısma Süresi</th>
+              <th rowspan="1" colspan="2"  align="center">Ürün Adedi</th>
+			  <th rowspan="1" colspan="2"  align="center">Ürün Kodu</th>
+			  <th rowspan="1" colspan="2"  align="center">Ortalama Hız</th>
+			  <th rowspan="1" colspan="2"  align="center">Makinanın Durma Sebebi</th>
+			  <th rowspan="1" colspan="2"  align="center">Duruş Saati</th>
+			  <th rowspan="1" colspan="2"  align="center">Günçelleme Zamanı</th>
+			  <th rowspan="1" colspan="2"  align="center">Tarih</th>
+          </tr>
+		  <tr  height="50px" >
+		  <td align="center" colspan="2"  bgcolor="gold">08:41:42</td>
+		  <td align="center" colspan="2"  bgcolor="gold">800</td>
+		  <td align="center" colspan="2"  bgcolor="gold">F8AE-1</td>
+		  <td align="center" colspan="2"  bgcolor="gold">20 m/s</td>
+		  <td align="center" colspan="2"  bgcolor="gold">Elektrik Kesintisi</td>
+		  <td align="center" colspan="2"  bgcolor="gold">13:41:42</td>
+		  <td align="center" colspan="2"  bgcolor="gold">13:41:42</td>
+		  <td align="center" colspan="2"  bgcolor="gold">
+		  	  
+		  
+		  </td>
+		  
+		  
+		  </tr>
+			
+         
+     </table>
+	
+</html>
